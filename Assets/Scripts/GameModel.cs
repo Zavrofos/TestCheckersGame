@@ -33,16 +33,16 @@ public class GameModel
     }
     public void MoveChecker(Checker checker, int x, int y)
     {
-        if(checker is WhiteChecker)
+        if(checker.IsWhite)
         {
             Board.Checkers[checker.X, checker.Y] = null;
-            Board.Checkers[x, y] = new WhiteChecker(x, y);
+            Board.Checkers[x, y] = new Checker(x, y, true);
             CheckerMoved?.Invoke(checker, x, y);
         }
-        else if(checker is BlackChecker)
+        else if(checker != null)
         {
             Board.Checkers[checker.X, checker.Y] = null;
-            Board.Checkers[x, y] = new BlackChecker(x, y);
+            Board.Checkers[x, y] = new Checker(x, y, false);
             CheckerMoved?.Invoke(checker, x, y);
         }
     }
@@ -71,9 +71,9 @@ public class GameModel
             y = selectedChecker.Y - 1;
         }
 
-        if (selectedChecker is WhiteChecker)
+        if (selectedChecker.IsWhite)
         {
-            if (Board.Checkers[x, y] is BlackChecker)
+            if (!Board.Checkers[x, y].IsWhite)
             {
                 Checker checker = Board.Checkers[x, y];
                 EatedChecker?.Invoke(checker);
@@ -81,9 +81,9 @@ public class GameModel
                 isEatenEnemyChecker = true;
             }
         }
-        else if (selectedChecker is BlackChecker)
+        else if (!selectedChecker.IsWhite)
         {
-            if (Board.Checkers[x, y] is WhiteChecker)
+            if (Board.Checkers[x, y].IsWhite)
             {
                 Checker checker = Board.Checkers[x, y];
                 EatedChecker?.Invoke(checker);
@@ -115,18 +115,18 @@ public class GameModel
 
                 if (x >= 0 && x < Board.Width && y >= 0 && y < Board.Height)
                 {
-                    if (selectedChecker is WhiteChecker)
+                    if (selectedChecker.IsWhite)
                     {
                         Checker enemyChecker = Board.Checkers[x, y];
-                        if (enemyChecker is BlackChecker)
+                        if (enemyChecker != null && !enemyChecker.IsWhite)
                         {
                             enemyCheckers.Add(enemyChecker);
                         }
                     }
-                    else if (selectedChecker is BlackChecker)
+                    else if (!selectedChecker.IsWhite)
                     {
                         Checker enemyChecker = Board.Checkers[x, y];
-                        if (enemyChecker is WhiteChecker)
+                        if (enemyChecker != null && enemyChecker.IsWhite)
                         {
                             enemyCheckers.Add(enemyChecker);
                         }
@@ -222,7 +222,7 @@ public class GameModel
     public List<FreeCell> GetFreeCellToMove(Checker selectedChecker)
     {
         List<FreeCell> freeCells = new List<FreeCell>();
-        if (selectedChecker is WhiteChecker)
+        if (selectedChecker.IsWhite)
         {
             int rightX = selectedChecker.X + 1;
             int y = selectedChecker.Y + 1;
@@ -240,7 +240,7 @@ public class GameModel
                 FreeCellAdded?.Invoke(freeCell);
             }
         }
-        else if (selectedChecker is BlackChecker)
+        else if (!selectedChecker.IsWhite)
         {
             int rightX = selectedChecker.X + 1;
             int y = selectedChecker.Y - 1;
@@ -269,7 +269,7 @@ public class GameModel
             List<FreeCell> freeCell = new List<FreeCell>();
             foreach (var checker in Board.Checkers)
             {
-                if(checker is WhiteChecker)
+                if(checker != null && checker.IsWhite)
                 {
                     freeCell = CheckNearEnemyAndGetFreeCells(checker);
                     if(freeCell.Count != 0)
@@ -284,7 +284,7 @@ public class GameModel
             {
                 foreach(var checker in Board.Checkers)
                 {
-                    if(checker is WhiteChecker)
+                    if(checker != null && checker.IsWhite)
                     {
                         freeCell = GetFreeCellToMove(checker);
                         if(freeCell.Count != 0)
@@ -302,7 +302,7 @@ public class GameModel
             List<FreeCell> freeCell = new List<FreeCell>();
             foreach (var checker in Board.Checkers)
             {
-                if (checker is BlackChecker)
+                if (checker != null && !checker.IsWhite)
                 {
                     freeCell = CheckNearEnemyAndGetFreeCells(checker);
                     if (freeCell.Count != 0)
@@ -317,7 +317,7 @@ public class GameModel
             {
                 foreach (var checker in Board.Checkers)
                 {
-                    if (checker is BlackChecker)
+                    if (checker != null && !checker.IsWhite)
                     {
                         freeCell = GetFreeCellToMove(checker);
                         if (freeCell.Count != 0)

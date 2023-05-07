@@ -48,12 +48,11 @@ public class Board
                 int index = x % 2 + y % 2;
                 if (index % 2 == 0)
                 {
-                    Checkers[x, y] = new WhiteChecker(x, y);
-
+                    Checkers[x, y] = new Checker(x, y, true);
                 }
                 else
                 {
-                    Checkers[x, Height - 1 - y] = new BlackChecker(x, Height - 1 - y);
+                    Checkers[x, Height - 1 - y] = new Checker(x, Height - 1 - y, false);
                 }
             }
         }

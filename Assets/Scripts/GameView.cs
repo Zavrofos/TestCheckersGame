@@ -37,14 +37,14 @@ public class GameView : MonoBehaviour
                     Boxes[x, y] = spriteRendererComponent;
                 }
 
-                if (gameModel.Board.Checkers[x, y] is WhiteChecker)
+                if (gameModel.Board.Checkers[x, y] != null && gameModel.Board.Checkers[x, y].IsWhite)
                 {
                     Transform checker = Instantiate(_whiteChecker);
                     checker.position = new Vector2(x,y);
                     Checkers[x, y] = checker;
                 }
 
-                if (gameModel.Board.Checkers[x, y] is BlackChecker)
+                if (gameModel.Board.Checkers[x, y] != null && !gameModel.Board.Checkers[x, y].IsWhite)
                 {
                     Transform checker = Instantiate(_blackChecker);
                     checker.position = new Vector2(x, y);
