@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,11 @@ using UnityEngine.UI;
 public class GameView : MonoBehaviour
 {
     [SerializeField] private GameObject BoxPrefab;
-    [SerializeField] private Transform _blackChecker;
-    [SerializeField] private Transform _whiteChecker;
-    [SerializeField] private Button ButtonWhite;
-    [SerializeField] private Button ButtonBlack;
+    [SerializeField] private CheckerPrefab _checker;
+    public PouseMenu PouseMenu;
+    
     public SpriteRenderer[,] Boxes;
-    public Transform[,] Checkers;
+    public CheckerPrefab[,] Checkers;
     public Text Move;
 
     public void DrowBoard(GameModel gameModel)
@@ -39,16 +39,25 @@ public class GameView : MonoBehaviour
 
                 if (gameModel.Board.Checkers[x, y] != null && gameModel.Board.Checkers[x, y].IsWhite)
                 {
-                    Transform checker = Instantiate(_whiteChecker);
-                    checker.position = new Vector2(x,y);
-                    Checkers[x, y] = checker;
+                    CheckerPrefab whiteCheker = Instantiate(_checker);
+                    whiteCheker.SpriteRenderer.sprite = _checker.WhiteCheckerSprite;
+                    whiteCheker.Transform.position = new Vector2(x, y);
+                    Checkers[x, y] = whiteCheker;
+                    //Transform checker = Instantiate(_whiteChecker);
+                    //checker.position = new Vector2(x,y);
+                    //Checkers[x, y] = checker;
                 }
 
                 if (gameModel.Board.Checkers[x, y] != null && !gameModel.Board.Checkers[x, y].IsWhite)
                 {
-                    Transform checker = Instantiate(_blackChecker);
-                    checker.position = new Vector2(x, y);
-                    Checkers[x, y] = checker;
+                    CheckerPrefab blackChecker = Instantiate(_checker);
+                    blackChecker.SpriteRenderer.sprite = _checker.BlackCheckerSprite;
+                    blackChecker.Transform.position = new Vector2(x, y);
+                    Checkers[x, y] = blackChecker;
+
+                    //Transform checker = Instantiate(_blackChecker);
+                    //checker.position = new Vector2(x, y);
+                    //Checkers[x, y] = checker;
                 }
             }
         }

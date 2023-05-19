@@ -16,15 +16,15 @@ public class ControllerFreeCell : IController
 
     public void On()
     {
-        _gameModel.FreeCellAdded += OnFreeCellAdded;
-        _gameModel.FreeCellRemoved += OnFreeCellRemoved;
+        _gameModel.Board.FreeCellAdded += OnFreeCellAdded;
+        _gameModel.Board.FreeCellRemoved += OnFreeCellRemoved;
 
     }
 
     public void Off()
     {
-        _gameModel.FreeCellAdded -= OnFreeCellAdded;
-        _gameModel.FreeCellRemoved -= OnFreeCellRemoved;
+        _gameModel.Board.FreeCellAdded -= OnFreeCellAdded;
+        _gameModel.Board.FreeCellRemoved -= OnFreeCellRemoved;
     }
 
     private void OnFreeCellRemoved(FreeCell freeCell)

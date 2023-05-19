@@ -1,0 +1,54 @@
+{
+    "name": "InputControls",
+    "maps": [
+        {
+            "name": "MouseControls",
+            "id": "f8573af4-c542-46eb-8fc4-f3efa43804c1",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "a2b5b0c5-972a-46c4-a80d-baf463d0f5b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pouse",
+                    "type": "Button",
+                    "id": "d5359a92-622c-4615-9271-3c5b0cdff0cf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d1a5bd67-f824-4cda-8c92-2cb3cb918028",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b693d54a-a87e-4e18-b4d3-ca3f6c40dcbf",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

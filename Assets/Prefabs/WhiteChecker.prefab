@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9222857079862201674}
   - component: {fileID: 3105794273150867266}
+  - component: {fileID: 4139175303484385070}
   m_Layer: 0
   m_Name: WhiteChecker
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,6 +82,24 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4139175303484385070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6762619210571078324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071ddbf17f66aa545ac56a74b5025d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Transform: {fileID: 9222857079862201674}
+  SpriteRenderer: {fileID: 3105794273150867266}
+  BlackCheckerSprite: {fileID: 2056404379, guid: 6b0a0ef6600a10a4f8f8703178c048c6, type: 3}
+  WhiteCheckerSprite: {fileID: -1177373701, guid: 6b0a0ef6600a10a4f8f8703178c048c6, type: 3}
+  WhiteKingSprite: {fileID: 246785780, guid: 6b0a0ef6600a10a4f8f8703178c048c6, type: 3}
+  BlackKingSprite: {fileID: -551400094, guid: 6b0a0ef6600a10a4f8f8703178c048c6, type: 3}
