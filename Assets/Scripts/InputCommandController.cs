@@ -8,12 +8,12 @@ namespace Assets.Scripts
     public class InputCommandController : IController
     {
         private readonly InputControls _controls;
-        private CommandModel _commandModel;
+        private GameModel _gameModel;
 
-        public InputCommandController(CommandModel commandModel, InputControls inputControls)
+        public InputCommandController(GameModel gameModel, InputControls inputControls)
         {
             _controls = inputControls;
-            _commandModel = commandModel;
+            _gameModel = gameModel;
         }
 
         public void On()
@@ -31,7 +31,10 @@ namespace Assets.Scripts
         private void OnClick(CallbackContext context)
         {
             Vector2 position = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            _commandModel.GetMousePosition(position.x, position.y);
+            if (_gameModel.isWhiteMove && _gameModel.isGameOver == false)
+            {
+                _gameModel.CommandModel.GetMousePosition(position.x, position.y);
+            }
         }
     }
 }

@@ -36,4 +36,11 @@ public class Checker
         CheckerMoved?.Invoke(oldX, oldY, x, y);
         EatedChecker?.Invoke(oldX, oldY, x, y);
     }
+
+    public void Reset()
+    {
+        X = InitialX;
+        Y = InitialY;
+        IsKing = false;
+    }
 }

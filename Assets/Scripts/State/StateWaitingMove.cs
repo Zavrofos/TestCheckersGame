@@ -11,6 +11,11 @@ namespace Assets.Scripts.Update
             if(gameModel.Board.AvailableCheckers.Count == 0)
             {
                 gameModel.Board.AvailableCheckersToMove(gameModel.isWhiteMove);
+                gameModel.GameOverModel.CheckGameOver(gameModel.Board.AvailableCheckers, gameModel.isWhiteMove);
+                if (gameModel.isGameOver)
+                {
+                    return;
+                }
             }
 
             Checker availableChecker = gameModel.Board.GetAvailableCheckerToCheckToMove(mousePositionX, mousePositionY);

@@ -11,9 +11,8 @@ public class BoardModel
 
     public List<FreeCell> FreeCells = new List<FreeCell>();
     public List<Checker> AvailableCheckers = new List<Checker>();
-    public List<Checker> EatedWhiteCheckers = new List<Checker>();
-    public List<Checker> EatedBlackCheckers = new List<Checker>();
-
+    public List<Checker> EatedCheckers = new List<Checker>();
+    
     public int Height;
     public int Width;
     public Box[,] BoardBox;
@@ -544,5 +543,31 @@ public class BoardModel
         return null;
     }
 
+
+
+    public void ResetGame()
+    {
+        for(int x = 0; x < Width; x++)
+        {
+            for(int y = 0; y < Height; y++)
+            {
+                Checker chercker = Checkers[x, y];
+                if (chercker != null)
+                {
+                    EatedCheckers.Add(chercker);
+                    Checkers[x, y] = null;
+                }
+            }
+        }
+
+        foreach(var checker in EatedCheckers)
+        {
+            checker.Reset();
+            Checkers[checker.X, checker.Y] = checker;
+        }
+
+        FreeCells.Clear();
+        AvailableCheckers.Clear();
+    }
 }
 

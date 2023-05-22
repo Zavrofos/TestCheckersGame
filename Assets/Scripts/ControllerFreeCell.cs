@@ -34,6 +34,9 @@ public class ControllerFreeCell : IController
 
     private void OnFreeCellAdded(FreeCell freeCell)
     {
-        _gameView.Boxes[freeCell.X, freeCell.Y].color = Color.green;
+        if(_gameModel.isWhiteMove)
+        {
+            _gameView.Boxes[freeCell.X, freeCell.Y].color = Color.green;
+        }
     }
 }

@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public Dictionary<Checker, List<IController>> controllersCheckers = new Dictionary<Checker, List<IController>>();
     private IController controllerClick;
     private IController _pouseMenuController;
+    private IController _pointsController;
+    private IController _gameOverController;
+    private IController _controllerMoveComputerPlayer;
+    
     
 
     private void Awake()
@@ -25,8 +29,11 @@ public class GameManager : MonoBehaviour
         GameView = GetComponent<GameView>();
         InputControls = new InputControls();
         controllerFreeCell = new ControllerFreeCell(GameModel, GameView);
-        _inputController = new InputCommandController(GameModel.CommandModel, InputControls);
+        _inputController = new InputCommandController(GameModel, InputControls);
         _pouseMenuController = new PouseMenuController(GameView, InputControls);
+        _pointsController = new ControllerPoints(GameModel, GameView);
+        _gameOverController = new GameOverController(GameModel, GameView);
+        _controllerMoveComputerPlayer = new ControllerMoveComputerPlayer(GameModel, GameView);
 
         foreach (var checker in GameModel.Board.Checkers)
         {
@@ -49,7 +56,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        
+        GameModel.ResetGame();
+        GameView.ResetGame();
     }
 
     private void ConstrollersOn()
@@ -65,6 +73,9 @@ public class GameManager : MonoBehaviour
         controllerClick.On();
         _inputController.On();
         _pouseMenuController.On();
+        _pointsController.On();
+        _gameOverController.On();
+        _controllerMoveComputerPlayer.On();
     }
 
     private void ControllersOff()
@@ -80,6 +91,9 @@ public class GameManager : MonoBehaviour
         controllerClick.Off();
         _inputController.Off();
         _pouseMenuController.Off();
+        _pointsController.Off();
+        _gameOverController.Off();
+        _controllerMoveComputerPlayer.Off();
     }
 
     private void OnEnable()

@@ -8,10 +8,8 @@ namespace Assets.Scripts.Update
         public void Move(int mousePositionX, int mousePositionY, GameModel gameModel)
         {
             FreeCell freeCell = gameModel.Board.GetFreeCellToCheckToMove(mousePositionX, mousePositionY);
-            if(freeCell != null)
+            if (freeCell != null)
             {
-                //gameModel.MoveChecker(gameModel.SelectedChecker, mousePositionX, mousePositionY);
-                //gameModel.EatChecker(gameModel.SelectedChecker, mousePositionX, mousePositionY);
                 gameModel.SelectedChecker.Move(mousePositionX, mousePositionY);
                 if (gameModel.isEatenEnemyChecker)
                 {
@@ -30,6 +28,16 @@ namespace Assets.Scripts.Update
                 gameModel.Board.ClearFreeCells(gameModel.Board.FreeCells);
                 gameModel.isWhiteMove = !gameModel.isWhiteMove;
                 gameModel.ChangeState(new StateWaitingMove());
+                gameModel.Board.AvailableCheckersToMove(gameModel.isWhiteMove);
+                gameModel.GameOverModel.CheckGameOver(gameModel.Board.AvailableCheckers, gameModel.isWhiteMove);
+                //gameModel.currentState.Move(mousePositionX, mousePositionY, gameModel);
+                if (!gameModel.isWhiteMove && !gameModel.isGameOver)
+                {
+                    //gameModel.Board.AvailableCheckersToMove(gameModel.isWhiteMove);
+                    //gameModel.GameOverModel.CheckGameOver(gameModel.Board.AvailableCheckers, gameModel.isWhiteMove);
+                    gameModel.ComputerPlayer.Move();
+                }
+                return;
             }
 
             Checker availableChecker = gameModel.Board.GetAvailableCheckerToCheckToMove(mousePositionX, mousePositionY);

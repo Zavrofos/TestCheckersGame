@@ -34,9 +34,8 @@ namespace Assets.Scripts
             {
                 CheckerPrefab checkerPrefab = _gameView.Checkers[oldX, oldY];
                 _gameView.Checkers[oldX, oldY] = null;
-                checkerPrefab.Transform.position = new Vector2(newPositionX, newPositionY);
+                checkerPrefab.MoveAnimate(newPositionX, newPositionY);
                 _gameView.Checkers[newPositionX, newPositionY] = checkerPrefab;
-
 
                 Checker checker = _gameModel.Board.Checkers[oldX, oldY];
                 _gameModel.Board.Checkers[newPositionX, newPositionY] = checker;

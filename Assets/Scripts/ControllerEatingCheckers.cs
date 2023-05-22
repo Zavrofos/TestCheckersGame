@@ -89,6 +89,8 @@ namespace Assets.Scripts
                     {
                         Checker enemychecker = _gameModel.Board.Checkers[x, y];
                         _gameModel.Board.Checkers[x, y] = null;
+                        _gameModel.Board.EatedCheckers.Add(enemychecker);
+                        _gameModel.PointsModel.AddPoint(enemychecker);
                         _gameView.Destroy(enemychecker);
                         _gameModel.isEatenEnemyChecker = true;
                     }
@@ -99,6 +101,8 @@ namespace Assets.Scripts
                     {
                         Checker enemychecker = _gameModel.Board.Checkers[x, y];
                         _gameModel.Board.Checkers[x, y] = null;
+                        _gameModel.Board.EatedCheckers.Add(enemychecker);
+                        _gameModel.PointsModel.AddPoint(enemychecker);
                         _gameView.Destroy(enemychecker);
                         _gameModel.isEatenEnemyChecker = true;
                     }
